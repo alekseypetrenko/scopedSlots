@@ -1,19 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Parent :title="title">
+      <template v-slot:child-slot>
+        <h1>
+          Text from the parrent and passed throught the parent to child via slot
+        </h1>
+        <h2>H2</h2>
+        <button @click="sayHi">Click</button>
+      </template>
+    </Parent>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Parent from "./components/Parent.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Parent,
+  },
+  data() {
+    return {
+      title: "Title from App",
+    };
+  },
+  methods: {
+    sayHi() {
+      this.title = "Button is clicked!";
+    },
+  },
+};
 </script>
 
 <style>
